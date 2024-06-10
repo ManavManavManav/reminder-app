@@ -9,14 +9,23 @@ const App = () => {
 
   useEffect(() => {
     const fetchReminders = async () => {
-      const response = await axios.get('/api/reminders');
-      setReminders(response.data);
+      try {
+        const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/reminders`);
+        setReminders(response.data);
+      } catch (error) {
+        console.error("Error fetching reminders:", error);
+      }
     };
     fetchReminders();
   }, []);
 
-  const addReminder = (reminder) => {
-    setReminders([...reminders, reminder]);
+  const addReminder = async (reminder) => {
+    try {
+      const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/reminders`, reminder);
+      setReminders([...reminders, response.data]);
+    } catch (error) {
+      console.error("Error adding reminder:", error);
+    }
   };
 
   return (
