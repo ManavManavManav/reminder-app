@@ -40,4 +40,13 @@ const ReminderForm = ({ addReminder, updateReminder, editingReminder }) => {
         type="date"
         value={date}
         onChange={(e) => setDate(e.target.value)}
-        className
+        className="block w-full px-3 py-2 border rounded-md"
+      />
+      <button type="submit" className="px-4 py-2 bg-blue-500 text-white rounded-md">
+        {editingReminder ? 'Update Reminder' : 'Add Reminder'}
+      </button>
+    </form>
+  );
+};
+
+export default ReminderForm;
