@@ -8,6 +8,11 @@ services:
     envVars:
       - key: MONGODB_URI
         value: 'mongodb+srv://manav:manav124@cluster0.dlwklmo.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0'
+      - key: NODE_OPTIONS
+        value: '--openssl-legacy-provider'
+    build:
+      environment:
+        NODE_VERSION: 16.x
 
   - type: web
     name: reminder-app-frontend
@@ -18,4 +23,7 @@ services:
     routes:
       - type: rewrite
         source: /.*
-        destination: /index.html
+        destination: /index.html'
+    build:
+      environment:
+        NODE_VERSION: 16.x
