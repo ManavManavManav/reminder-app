@@ -34,6 +34,25 @@ app.post('/reminders', async (req, res) => {
   }
 });
 
+app.delete('/reminders/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    await Reminder.findByIdAndDelete(id);
+    res.json({ message: 'Reminder deleted successfully' });
+  } catch (error) {
+    res.status(500).json({ message: 'Error deleting reminder' });
+  }
+});
+
+app.put('/reminders/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const updatedReminder = await Reminder.findByIdAndUpdate(id, req.body, { new: true });
+    res.json(updatedReminder);
+  } catch (error) {
+    res.status(500).json({ message: 'Error updating reminder' });
+  }
+});
 
 
 app.listen(3000, () => {
