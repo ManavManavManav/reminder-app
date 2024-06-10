@@ -8,7 +8,7 @@ const ReminderForm = ({ addReminder }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const newReminder = { title, date, completed: false };
-    const response = await axios.post('https://reminder-frontend.onrender.com', newReminder);
+    const response = await axios.post('/api/reminders', newReminder);
     addReminder(response.data);
     setTitle('');
     setDate('');

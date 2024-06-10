@@ -9,7 +9,7 @@ const App = () => {
 
   useEffect(() => {
     const fetchReminders = async () => {
-      const response = await axios.get('https://reminder-frontend.onrender.com');
+      const response = await axios.get('/api/reminders');
       setReminders(response.data);
     };
     fetchReminders();
