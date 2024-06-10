@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: reminder-app-backend
+    env: node
+    plan: free
+    buildCommand: 'cd backend && npm install'
+    startCommand: 'node backend/server.js'
+    envVars:
+      - key: MONGODB_URI
+        value: 'mongodb+srv://manav:manav124@cluster0.dlwklmo.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0'
