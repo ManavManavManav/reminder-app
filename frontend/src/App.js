@@ -21,7 +21,11 @@ const App = () => {
 
   const addReminder = async (reminder) => {
     try {
-      const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/reminders`, reminder);
+      const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/reminders`, reminder, {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
       setReminders([...reminders, response.data]);
     } catch (error) {
       console.error("Error adding reminder:", error);

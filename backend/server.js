@@ -25,10 +25,16 @@ app.get('/reminders', async (req, res) => {
 });
 
 app.post('/reminders', async (req, res) => {
-  const reminder = new Reminder(req.body);
-  await reminder.save();
-  res.json(reminder);
+  try {
+    const reminder = new Reminder(req.body);
+    await reminder.save();
+    res.json(reminder);
+  } catch (error) {
+    res.status(500).json({ message: "Error adding reminder" });
+  }
 });
+
+
 
 app.listen(3000, () => {
   console.log('Server running on port 3000');
